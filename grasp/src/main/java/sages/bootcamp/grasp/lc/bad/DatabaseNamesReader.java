@@ -1,9 +1,8 @@
-package sages.bootcamp.grasp.lc;
+package sages.bootcamp.grasp.lc.bad;
 
 import java.util.List;
 
-public class DatabaseNamesReader implements NamesReader {
-  @Override
+public class DatabaseNamesReader {
   public List<String> readNames() {
     // reading from database
     return null;

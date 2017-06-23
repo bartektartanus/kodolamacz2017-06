@@ -1,8 +1,8 @@
-package sages.bootcamp.grasp.lc;
+package sages.bootcamp.grasp.lc.bad;
 
 import java.util.List;
 
-public class Names {
+public class FileNames {
   FileNamesReader namesReader = new FileNamesReader();
 
   String join() {

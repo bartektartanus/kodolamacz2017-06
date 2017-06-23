@@ -1,4 +1,4 @@
-package sages.bootcamp.grasp.lc;
+package sages.bootcamp.grasp.lc.good;
 
 import java.util.List;
 
