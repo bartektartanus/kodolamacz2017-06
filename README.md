@@ -46,3 +46,28 @@ Add users field to Building, create one to many relationship
 Building
 * address
 * users
+
+TASK 5
+------
+
+Create below model, insert some data to database, review created schema
+
+Wallet
+* amount
+* owner: Customer - one-one
+
+Customer
+* name
+* age
+* cars - one-many
+
+Car
+* model: String
+
+Shop
+* name: String
+* products: List<Product> - many-many
+
+Product
+* price
+* name
