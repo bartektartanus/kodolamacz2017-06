@@ -15,9 +15,22 @@ public class App {
     entityManager.persist(notebook);
     System.out.println(notebook);
 
-    User user = new User(0, "marcin.krol", 25, notebook);
+    Town town = new Town(0, "Warszawa", 100);
+    entityManager.persist(town);
+    System.out.println(town);
+
+    User user = new User(0, "marcin.krol", 25, notebook, town);
     entityManager.persist(user);
     System.out.println(user);
+
+    User userWithoutTown = new User(0, "marcin.krol", 25, notebook, null);
+    entityManager.persist(userWithoutTown);
+    System.out.println(userWithoutTown);
+
+    User userWithoutTownAndNotebook = new User(0, "marcin.krol", 25, null, null);
+    entityManager.persist(userWithoutTownAndNotebook);
+    System.out.println(userWithoutTownAndNotebook);
+
 
     entityManager.getTransaction().commit();
     entityManager.close();

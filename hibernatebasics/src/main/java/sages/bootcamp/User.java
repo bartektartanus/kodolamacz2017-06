@@ -21,11 +21,15 @@ public class User {
   @OneToOne
   private final Notebook notebook;
 
-  public User(int id, String login, int age, Notebook notebook) {
+  @OneToOne
+  private final Town town;
+
+  public User(int id, String login, int age, Notebook notebook, Town town) {
     this.id = id;
     this.login = login;
     this.age = age;
     this.notebook = notebook;
+    this.town = town;
   }
 
   @Override
@@ -35,6 +39,7 @@ public class User {
         ", login='" + login + '\'' +
         ", age=" + age +
         ", notebook=" + notebook +
+        ", town=" + town +
         '}';
   }
 }

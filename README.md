@@ -26,3 +26,13 @@ Notebook
 * model: String
 * resolution: int
 * productionTimestamp: Instant
+
+TASK 3
+------
+
+Create town class
+Add town field to User, create one to one relationship
+
+Town
+* name
+* inhabitantsCount

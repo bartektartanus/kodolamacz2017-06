@@ -5,12 +5,13 @@
     <persistence-unit name="postgres" transaction-type="RESOURCE_LOCAL">
         <class>sages.bootcamp.User</class>
         <class>sages.bootcamp.Notebook</class>
+        <class>sages.bootcamp.Town</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>
             <property name="javax.persistence.jdbc.password" value="postgres"/>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
         </properties>
     </persistence-unit>
 </persistence>
