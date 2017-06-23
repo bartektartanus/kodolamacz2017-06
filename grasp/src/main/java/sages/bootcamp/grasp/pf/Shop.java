@@ -15,8 +15,10 @@ public class Shop {
     return productToPrice.get(product);
   }
 
-  void saveInDatabase() {
+}
+
+class ShopPersistanceService {
+  void saveInDatabase(Shop shop) {
     // saving in database
   }
-
 }

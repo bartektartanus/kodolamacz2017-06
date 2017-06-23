@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Names {
 
-  FileNamesReader namesReader;
+  NamesReader namesReader;
 
-  public Names(FileNamesReader namesReader) {
+  public Names(NamesReader namesReader) {
     this.namesReader = namesReader;
   }
 

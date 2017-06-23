@@ -1,18 +1,14 @@
 package sages.bootcamp.grasp.controller;
 
-import java.util.List;
-
 public class Window {
 
-  List<Controller> controllers;
+  Controller controller;
 
   void clickButton() {
-    for (Controller controller : controllers) {
-      controller.clicked();
-    }
+    controller.clicked();
   }
 
   void registerClickButtonController(Controller controller) {
-    controllers.add(controller);
+    controller = controller;
   }
 }
