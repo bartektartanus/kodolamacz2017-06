@@ -1,4 +1,4 @@
-package sages.bootcamp.grasp.hc;
+package sages.bootcamp.grasp.hc.bad;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
