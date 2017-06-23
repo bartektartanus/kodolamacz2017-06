@@ -17,3 +17,12 @@ insert into the table rows:
 
 select rows with inhabitant 400 <= count <= 650
 
+TASK 2
+------
+
+Create notebook class, insert a few instances into db
+
+Notebook
+* model: String
+* resolution: int
+* productionTimestamp: Instant
