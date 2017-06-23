@@ -25,4 +25,14 @@ public class Notebook {
     this.resolution = resolution;
     this.productionTimestamp = productionTimestamp;
   }
+
+  @Override
+  public String toString() {
+    return "Notebook{" +
+        "id=" + id +
+        ", model='" + model + '\'' +
+        ", resolution=" + resolution +
+        ", productionTimestamp=" + productionTimestamp +
+        '}';
+  }
 }

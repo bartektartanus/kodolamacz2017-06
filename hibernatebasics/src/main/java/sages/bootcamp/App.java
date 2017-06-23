@@ -11,13 +11,13 @@ public class App {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
 
-    User user = new User(0, "marcin.krol", 25);
-    entityManager.persist(user);
+    Notebook notebook = new Notebook(0, "Samsung", 1300, Instant.now());
+    entityManager.persist(notebook);
+    System.out.println(notebook);
 
-    for (int i = 0; i < 10; i++) {
-      Notebook notebook = new Notebook(0, "Acer" + i, 1200 + i * 10, Instant.now().plusSeconds(60 * i));
-      entityManager.persist(notebook);
-    }
+    User user = new User(0, "marcin.krol", 25, notebook);
+    entityManager.persist(user);
+    System.out.println(user);
 
     entityManager.getTransaction().commit();
     entityManager.close();
