@@ -4,8 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -18,13 +20,13 @@ public class User {
   private final String login;
   private final int age;
 
-  @OneToOne
-  private final Notebook notebook;
+  @OneToMany
+  private final List<Notebook> notebook;
 
   @OneToOne
   private final Town town;
 
-  public User(int id, String login, int age, Notebook notebook, Town town) {
+  public User(int id, String login, int age, List<Notebook> notebook, Town town) {
     this.id = id;
     this.login = login;
     this.age = age;

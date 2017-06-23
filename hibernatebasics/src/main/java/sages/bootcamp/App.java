@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.Instant;
+import java.util.Arrays;
 
 public class App {
   public static void main(String[] args) {
@@ -11,26 +12,21 @@ public class App {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
 
-    Notebook notebook = new Notebook(0, "Samsung", 1300, Instant.now());
-    entityManager.persist(notebook);
-    System.out.println(notebook);
+    Notebook samsungNotebook = new Notebook(0, "Samsung", 1300, Instant.now());
+    entityManager.persist(samsungNotebook);
+    System.out.println(samsungNotebook);
+
+    Notebook acerNotebook = new Notebook(0, "Acer", 1500, Instant.now());
+    entityManager.persist(acerNotebook);
+    System.out.println(acerNotebook);
 
     Town town = new Town(0, "Warszawa", 100);
     entityManager.persist(town);
     System.out.println(town);
 
-    User user = new User(0, "marcin.krol", 25, notebook, town);
+    User user = new User(0, "marcin.krol", 25, Arrays.asList(samsungNotebook, acerNotebook), town);
     entityManager.persist(user);
     System.out.println(user);
-
-    User userWithoutTown = new User(0, "marcin.krol", 25, notebook, null);
-    entityManager.persist(userWithoutTown);
-    System.out.println(userWithoutTown);
-
-    User userWithoutTownAndNotebook = new User(0, "marcin.krol", 25, null, null);
-    entityManager.persist(userWithoutTownAndNotebook);
-    System.out.println(userWithoutTownAndNotebook);
-
 
     entityManager.getTransaction().commit();
     entityManager.close();

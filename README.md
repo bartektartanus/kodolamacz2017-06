@@ -36,3 +36,13 @@ Add town field to User, create one to one relationship
 Town
 * name
 * inhabitantsCount
+
+TASK 4
+------
+
+Create building class
+Add users field to Building, create one to many relationship
+
+Building
+* address
+* users
