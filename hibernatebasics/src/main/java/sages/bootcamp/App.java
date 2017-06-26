@@ -1,51 +1,64 @@
 package sages.bootcamp;
 
+import org.apache.log4j.Logger;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class App {
-  public static void main(String[] args) {
-    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("postgres");
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
-    entityManager.getTransaction().begin();
+    private static final Logger LOG = Logger.getLogger(App.class);
 
-    Notebook samsungNotebook = new Notebook(0, "Samsung", 1300, Instant.now());
-    entityManager.persist(samsungNotebook);
-    System.out.println(samsungNotebook);
+    public static void main(String[] args) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("postgres");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
 
-    Notebook acerNotebook = new Notebook(0, "Acer", 1500, Instant.now());
-    entityManager.persist(acerNotebook);
-    System.out.println(acerNotebook);
+        Notebook samsungNotebook = new Notebook(0, "Samsung", 1300, Instant.now());
+        entityManager.persist(samsungNotebook);
+        System.out.println(samsungNotebook);
 
-    Town town = new Town(0, "Warszawa", 100);
-    entityManager.persist(town);
-    System.out.println(town);
+        Notebook acerNotebook = new Notebook(0, "Acer", 1500, Instant.now());
+        entityManager.persist(acerNotebook);
+        System.out.println(acerNotebook);
 
-    User user = new User(0, "marcin.krol", 25, Arrays.asList(samsungNotebook, acerNotebook), town);
-    entityManager.persist(user);
+        Town town = new Town(0, "Warszawa", 100);
+        entityManager.persist(town);
+        System.out.println(town);
 
-    System.out.println(user);
-    entityManager.getTransaction().commit();
+        User user1 = new User(0, "marcin.krol", 25, Arrays.asList(samsungNotebook, acerNotebook), town);
+        User user2 = new User(0, "bartek", 25, Arrays.asList(samsungNotebook, acerNotebook), town);
+        entityManager.persist(user1);
+        entityManager.persist(user2);
+
+        System.out.println(user1);
+        LOG.info(user1);
+        entityManager.getTransaction().commit();
 
 
-    UserDao userDao = new UserDaoImpl(entityManager);
-    User userFromDb = userDao.findById(user.getId());
+        UserDao userDao = new UserDaoImpl(entityManager);
+        User userFromDb = userDao.findById(user1.getId());
+        System.out.println(user1);
+        System.out.println(userFromDb);
 
-    // CRUD - Create Read Update Delete
-    // DAO - Data Access Object
+        User bartek = userDao.findByLogin("bartek");
+        System.out.println("Bartek: " + bartek);
+
+        // CRUD - Create Read Update Delete
+        // DAO - Data Access Object
 
 //    entityManager.getTransaction().begin();
 //    User userFromDb = entityManager.find(User.class, user.getId());
-    // postgres.jastadomain.ovh zamiast localhost
-    System.out.println(user);
-    System.out.println(userFromDb);
+        // postgres.jastadomain.ovh zamiast localhost
+        //ERROR
+        //WARN
+        //INFO
+        //DEBUG
+        //TRACE
 
-    entityManager.close();
-    entityManagerFactory.close();
-  }
+        entityManager.close();
+        entityManagerFactory.close();
+    }
 }
