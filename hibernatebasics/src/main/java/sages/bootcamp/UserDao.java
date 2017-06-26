@@ -10,4 +10,5 @@ public interface UserDao {
 
     List<User> findAllByAgeBetween(int low, int high);
 
+    void save(User user);
 }

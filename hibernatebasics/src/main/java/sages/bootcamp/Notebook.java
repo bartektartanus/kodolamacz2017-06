@@ -17,6 +17,8 @@ public class Notebook {
 
   private final String model;
   private final int resolution;
+  private final int sizeInInches;
+  private final String colour;
   private final Instant productionTimestamp;
 
   public Notebook(int id, String model, int resolution, Instant productionTimestamp) {

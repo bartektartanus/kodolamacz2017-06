@@ -40,7 +40,21 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> findAllByAgeBetween(int low, int high) {
-        return null;
+        beginTransaction();
+        TypedQuery<User> query = entityManager
+                .createQuery("SELECT u from User u WHERE u.age > ?1 AND u.age < ?2", User.class);
+        query.setParameter(1, low);
+        query.setParameter(2, high);
+        List<User> resultList = query.getResultList();
+        commitTransaction();
+        return resultList;
+    }
+
+    @Override
+    public void save(User user) {
+        beginTransaction();
+        entityManager.persist(user);
+        commitTransaction();
     }
 
     private void commitTransaction() {

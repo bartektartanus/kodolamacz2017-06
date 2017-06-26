@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -25,6 +26,10 @@ public class User {
 
   @OneToOne
   private final Town town;
+
+  public User(String login, int age, Town town){
+    this(0, login, age, Collections.emptyList(), town);
+  }
 
   public User(int id, String login, int age, List<Notebook> notebook, Town town) {
     this.id = id;
