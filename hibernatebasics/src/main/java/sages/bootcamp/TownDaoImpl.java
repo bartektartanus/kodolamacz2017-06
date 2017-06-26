@@ -1,27 +1,21 @@
 package sages.bootcamp;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
-public class TownDaoImpl implements TownDao {
-
-    private EntityManager entityManager;
+public class TownDaoImpl extends AbstractDaoImpl<Town>  implements TownDao{
 
     public TownDaoImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
+        super(entityManager, Town.class);
     }
 
     @Override
-    public void save(Town town) {
+    public Town findByName(String name) {
         beginTransaction();
-        entityManager.persist(town);
+        TypedQuery<Town> query = query("SELECT t FROM Town t WHERE t.name = :name");
+        query.setParameter("name", name);
+        Town town = query.getSingleResult();
         commitTransaction();
-    }
-
-    private void commitTransaction() {
-        entityManager.getTransaction().commit();
-    }
-
-    private void beginTransaction() {
-        entityManager.getTransaction().begin();
+        return town;
     }
 }

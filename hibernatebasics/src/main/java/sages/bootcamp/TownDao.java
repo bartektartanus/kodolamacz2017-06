@@ -1,7 +1,7 @@
 package sages.bootcamp;
 
-public interface TownDao {
+public interface TownDao extends AbstractDao<Town> {
 
-    void save(Town town);
+    Town findByName(String name);
 
 }

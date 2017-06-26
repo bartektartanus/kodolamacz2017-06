@@ -3,27 +3,17 @@ package sages.bootcamp;
 import org.apache.log4j.Logger;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
 
     private static final Logger LOG = Logger.getLogger(UserDaoImpl.class);
 
-    private EntityManager entityManager;
-
     public UserDaoImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
+        super(entityManager, User.class);
     }
 
-    @Override
-    public User findById(int id) {
-        beginTransaction();
-        User user = entityManager.find(User.class, id);
-        commitTransaction();
-        return user;
-    }
 
     @Override
     public User findByLogin(String login) {
@@ -42,26 +32,12 @@ public class UserDaoImpl implements UserDao {
     public List<User> findAllByAgeBetween(int low, int high) {
         beginTransaction();
         TypedQuery<User> query = entityManager
-                .createQuery("SELECT u from User u WHERE u.age > ?1 AND u.age < ?2", User.class);
-        query.setParameter(1, low);
-        query.setParameter(2, high);
+                .createQuery("select u from User u WHERE u.age > :lowAge AND u.age < :highAge", User.class);
+        query.setParameter("lowAge", low);
+        query.setParameter("highAge", high);
         List<User> resultList = query.getResultList();
         commitTransaction();
         return resultList;
     }
 
-    @Override
-    public void save(User user) {
-        beginTransaction();
-        entityManager.persist(user);
-        commitTransaction();
-    }
-
-    private void commitTransaction() {
-        entityManager.getTransaction().commit();
-    }
-
-    private void beginTransaction() {
-        entityManager.getTransaction().begin();
-    }
 }

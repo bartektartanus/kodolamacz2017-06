@@ -16,11 +16,11 @@ public class App {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
-        Notebook samsungNotebook = new Notebook(0, "Samsung", 1300, Instant.now());
+        Notebook samsungNotebook = new Notebook("Samsung", 1300,15,"black", Instant.now());
         entityManager.persist(samsungNotebook);
         System.out.println(samsungNotebook);
 
-        Notebook acerNotebook = new Notebook(0, "Acer", 1500, Instant.now());
+        Notebook acerNotebook = new Notebook("Acer", 1500,13,"white", Instant.now());
         entityManager.persist(acerNotebook);
         System.out.println(acerNotebook);
 
