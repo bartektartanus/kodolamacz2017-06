@@ -4,7 +4,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class App {
   public static void main(String[] args) {
@@ -26,9 +28,23 @@ public class App {
 
     User user = new User(0, "marcin.krol", 25, Arrays.asList(samsungNotebook, acerNotebook), town);
     entityManager.persist(user);
-    System.out.println(user);
 
+    System.out.println(user);
     entityManager.getTransaction().commit();
+
+
+    UserDao userDao = new UserDaoImpl(entityManager);
+    User userFromDb = userDao.findById(user.getId());
+
+    // CRUD - Create Read Update Delete
+    // DAO - Data Access Object
+
+//    entityManager.getTransaction().begin();
+//    User userFromDb = entityManager.find(User.class, user.getId());
+    // postgres.jastadomain.ovh zamiast localhost
+    System.out.println(user);
+    System.out.println(userFromDb);
+
     entityManager.close();
     entityManagerFactory.close();
   }

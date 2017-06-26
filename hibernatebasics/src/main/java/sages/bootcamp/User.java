@@ -34,6 +34,26 @@ public class User {
     this.town = town;
   }
 
+  public int getId() {
+    return id;
+  }
+
+  public String getLogin() {
+    return login;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public List<Notebook> getNotebook() {
+    return notebook;
+  }
+
+  public Town getTown() {
+    return town;
+  }
+
   @Override
   public String toString() {
     return "User{" +
@@ -43,5 +63,9 @@ public class User {
         ", notebook=" + notebook +
         ", town=" + town +
         '}';
+  }
+
+  public void addNotebook(Notebook notebook) {
+    this.notebook.add(notebook);
   }
 }

@@ -12,7 +12,7 @@ import java.time.Instant;
 public class Notebook {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private final int id;
 
   private final String model;
