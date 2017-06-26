@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public abstract class AbstractDaoImpl<T> implements AbstractDao<T> {
+public abstract class AbstractDaoImpl<T>  implements AbstractDao<T> {
 
     protected EntityManager entityManager;
     private Class<T> tClass;
@@ -38,6 +38,20 @@ public abstract class AbstractDaoImpl<T> implements AbstractDao<T> {
         for (T entity : entities) {
             entityManager.persist(entity);
         }
+        commitTransaction();
+    }
+
+    @Override
+    public void delete(T entity) {
+        beginTransaction();
+        entityManager.remove(entity);
+        commitTransaction();
+    }
+
+    @Override
+    public void update(T entity) {
+        beginTransaction();
+        entityManager.merge(entity);
         commitTransaction();
     }
 
