@@ -14,6 +14,10 @@ public class Tweet extends BaseEntity{
     private User user;
     private final String text;
 
+    public Tweet() {
+        text = "";
+    }
+
     public Tweet(String text, User user) {
         this.text = text;
         this.user = user;

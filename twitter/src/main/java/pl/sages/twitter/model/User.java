@@ -15,6 +15,9 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user",cascade = {CascadeType.ALL})
     private List<Tweet> tweets;
 
+    public User() {
+    }
+
     public User(String login) {
         this.login = login;
         this.tweets = new ArrayList<>();
