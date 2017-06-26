@@ -9,7 +9,7 @@ public class Notebook {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private final int id;
+  private int id;
 
   private final String model;
   private final int resolution;

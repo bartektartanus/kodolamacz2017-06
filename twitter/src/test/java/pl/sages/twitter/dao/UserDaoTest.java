@@ -28,10 +28,17 @@ public class UserDaoTest {
     @Test
     public void shouldFindUserByLoginTest(){
         // given
-
+        User user = new User("abc");
+        user.addTweet("Siema, to mój pierwszy tweet!");
+        user.addTweet("Siema, to mój drugi tweet!");
+        user.addTweet("Siema, to mój drugi tweet!");
         // when
+        userDao.save(user);
 
         // then
+        User byId = userDao.findById(1);
+        System.out.println(byId);
+        System.out.println(byId.getTweets().get(0).getUser());
 
     }
 

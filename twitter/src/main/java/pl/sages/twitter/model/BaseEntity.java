@@ -16,4 +16,11 @@ public abstract class BaseEntity {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "BaseEntity{" +
+                "id=" + id +
+                '}';
+    }
 }

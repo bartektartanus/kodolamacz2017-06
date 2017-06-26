@@ -12,6 +12,7 @@
         <module>grasp</module>
         <module>solid</module>
         <module>hibernatebasics</module>
+        <module>twitter</module>
     </modules>
 
     <properties>

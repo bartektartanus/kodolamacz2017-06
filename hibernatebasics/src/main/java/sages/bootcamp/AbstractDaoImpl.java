@@ -8,6 +8,7 @@ public abstract class AbstractDaoImpl<T>  implements AbstractDao<T> {
 
     protected EntityManager entityManager;
     private Class<T> tClass;
+
     public AbstractDaoImpl(EntityManager entityManager, Class<T> tClass) {
         this.entityManager = entityManager;
         this.tClass = tClass;
