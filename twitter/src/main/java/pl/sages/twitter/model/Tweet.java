@@ -3,6 +3,7 @@ package pl.sages.twitter.model;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.time.Instant;
 
 @Entity
 @Table(name = "tweets")
@@ -13,14 +14,17 @@ public class Tweet extends BaseEntity{
     @ManyToOne
     private User user;
     private final String text;
+    private final Instant addDate;
 
     public Tweet() {
         text = "";
+        this.addDate = Instant.now();
     }
 
     public Tweet(String text, User user) {
         this.text = text;
         this.user = user;
+        this.addDate = Instant.now();
     }
 
     public User getUser() {

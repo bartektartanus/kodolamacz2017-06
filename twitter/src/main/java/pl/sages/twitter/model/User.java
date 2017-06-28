@@ -1,9 +1,6 @@
 package pl.sages.twitter.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,15 +9,24 @@ import java.util.List;
 public class User extends BaseEntity {
 
     private String login;
+    private int age;
+    @Enumerated(EnumType.STRING)
+    private UserType type;
     @OneToMany(mappedBy = "user",cascade = {CascadeType.ALL})
     private List<Tweet> tweets;
 
     public User() {
+        type = UserType.STANDARD;
     }
 
-    public User(String login) {
+    public User(String login, int age) {
         this.login = login;
+        this.age = age;
         this.tweets = new ArrayList<>();
+    }
+
+    public int getAge() {
+        return age;
     }
 
     public String getLogin() {

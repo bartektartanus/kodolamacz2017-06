@@ -4,6 +4,7 @@ import pl.sages.twitter.model.BaseEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 public abstract class AbstractDaoImpl<T extends BaseEntity> implements AbstractDao<T> {
@@ -17,6 +18,10 @@ public abstract class AbstractDaoImpl<T extends BaseEntity> implements AbstractD
 
     protected TypedQuery<T> query(String query){
         return entityManager.createQuery(query, tClass);
+    }
+
+    protected CriteriaQuery<T> query(){
+        return entityManager.getCriteriaBuilder().createQuery(tClass);
     }
 
     @Override
