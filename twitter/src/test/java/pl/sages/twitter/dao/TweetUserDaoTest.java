@@ -23,7 +23,7 @@ public class TweetUserDaoTest {
 
     @Before
     public void init(){
-        user = new User("abc");
+        user = new User("abc", 20);
         user.addTweet("Siema, to mój pierwszy tweet!");
         user.addTweet("Siema, to mój drugi tweet!");
         user.addTweet("Siema, to mój drugi tweet!");

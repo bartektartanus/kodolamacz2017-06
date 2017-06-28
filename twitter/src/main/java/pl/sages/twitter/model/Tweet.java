@@ -35,6 +35,10 @@ public class Tweet extends BaseEntity{
         return text;
     }
 
+    public Instant getAddDate() {
+        return addDate;
+    }
+
     @Override
     public String toString() {
         return "Tweet{" +

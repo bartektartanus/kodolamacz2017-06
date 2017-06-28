@@ -9,6 +9,7 @@ import java.util.List;
 public class User extends BaseEntity {
 
     private String login;
+    private String email = "";
     private int age;
     @Enumerated(EnumType.STRING)
     private UserType type;
@@ -27,6 +28,12 @@ public class User extends BaseEntity {
 
     public int getAge() {
         return age;
+    }
+
+    public void setAge(int age) {
+        if(age > 0){
+            this.age = age;
+        }
     }
 
     public String getLogin() {

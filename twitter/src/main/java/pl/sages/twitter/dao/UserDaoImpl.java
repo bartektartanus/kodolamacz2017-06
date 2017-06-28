@@ -1,6 +1,7 @@
 package pl.sages.twitter.dao;
 
 import pl.sages.twitter.model.User;
+import pl.sages.twitter.model.User_;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -8,6 +9,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
+import java.util.Optional;
 
 public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
     public UserDaoImpl(EntityManager entityManager) {
@@ -15,12 +17,17 @@ public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
     }
 
     @Override
-    public User findByLogin(String login) {
+    public Optional<User> findByLogin(String login) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<User> query = query();
         Root<User> root = query.from(User.class);
-        query.where(cb.equal(root.get("login"), login));
-        return entityManager.createQuery(query).getSingleResult();
+        query.where(cb.equal(root.get(User_.login),login));
+        List<User> list = entityManager.createQuery(query).getResultList();
+        if(list.size() > 0){
+            return Optional.of(list.get(0));
+        }else{
+            return Optional.empty();
+        }
     }
 
     @Override
@@ -28,8 +35,13 @@ public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<User> query = query();
         Root<User> root = query.from(User.class);
-        query.where(cb.equal(root.get("email"), email));
-        return entityManager.createQuery(query).getSingleResult();
+        query.where(cb.equal(root.get(User_.email), email));
+        List<User> list = entityManager.createQuery(query).getResultList();
+        if(list.size() > 0){
+            return list.get(0);
+        }else{
+            return null;
+        }
     }
 
     @Override
@@ -47,12 +59,12 @@ public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
         CriteriaQuery<User> query = query();
         Root<User> root = query.from(User.class);
         Predicate ageLow = ageGte(cb, root, low);
-        Predicate ageHigh = cb.lessThanOrEqualTo(root.get("age"), high);
+        Predicate ageHigh = cb.lessThanOrEqualTo(root.get(User_.age), high);
         query.where(cb.and(ageLow, ageHigh));
         return entityManager.createQuery(query).getResultList();
     }
 
     private Predicate ageGte(CriteriaBuilder cb, Root<User> root, int age){
-        return cb.greaterThanOrEqualTo(root.get("age"), age);
+        return cb.greaterThanOrEqualTo(root.get(User_.age), age);
     }
 }

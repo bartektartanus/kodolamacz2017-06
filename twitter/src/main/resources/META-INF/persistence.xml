@@ -5,6 +5,7 @@
     <persistence-unit name="postgres" transaction-type="RESOURCE_LOCAL">
 
         <class>pl.sages.twitter.model.User</class>
+        <class>pl.sages.twitter.model.Tweet</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/kodolamacz"/>
             <property name="javax.persistence.jdbc.user" value="bartek"/>
